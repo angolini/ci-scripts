@@ -47,19 +47,6 @@ fi
 
 CONF_VERSION=$(grep  ^CONF_VERSION conf/local.conf | cut -d'"' -f 2)
 
-
-if [ "$CONF_VERSION" == "1" ]; then
-	cat << EOFEOF >> conf/local.conf
-ACCEPT_EULA_stm32mp1-disco = "1"
-ACCEPT_EULA_stm32mp1-eval = "1"
-EOFEOF
-else
-	cat << EOFEOF >> conf/local.conf
-ACCEPT_EULA:stm32mp1-disco = "1"
-ACCEPT_EULA:stm32mp1-eval = "1"
-EOFEOF
-fi
-
 cat << EOFEOF >> conf/local.conf
 CONNECTIVITY_CHECK_URIS = "https://www.google.com/"
 
