@@ -18,4 +18,8 @@ bitbake -e ${IMAGE} > ${archive}/bitbake_image_env.txt
 # Setscene (cache), failures not critical
 bitbake --setscene-only ${IMAGE} || true
 
-bitbake -D ${BITBAKE_EXTRA_ARGS} ${IMAGE}
+if [ "$BUILD_SDK" == "1" ] && [ "${DISTRO}" != "lmp-mfgtool" ]; then
+    bitbake -D ${BITBAKE_EXTRA_ARGS} ${IMAGE} -c populate_sdk
+else
+    bitbake -D ${BITBAKE_EXTRA_ARGS} ${IMAGE}
+fi
