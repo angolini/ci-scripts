@@ -26,6 +26,10 @@ if [ "$BUILD_SDK" == "1" ] && [ "${DISTRO}" != "lmp-mfgtool" ]; then
 fi
 bitbake -D ${BITBAKE_EXTRA_ARGS} ${IMAGE}
 
+if [ "$BUILD_MFG" == "1" ] && [ "${DISTRO}" != "lmp-mfgtool" ]; then
+    bitbake -D ${BITBAKE_EXTRA_ARGS} ${IMAGE} -c populate_mfgtool
+fi
+
 # write a summary of the buildstats to the terminal
 BUILDSTATS_SUMMARY="../layers/openembedded-core/scripts/buildstats-summary"
 if [ -f $BUILDSTATS_SUMMARY ]; then
