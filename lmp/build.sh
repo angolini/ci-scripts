@@ -195,6 +195,9 @@ if [ -d "${archive}" ] ; then
 	## Copy the SDK installation file
 	cp ${DEPLOY_DIR_SDK}/lmp*.sh ${archive}/sdk/ || true
 
+	## Copy the MFG bundle file
+	cp ${DEPLOY_DIR_IMAGE}/mfgtool-bundle* ${archive}/sdk/ || true
+
 	# Remove ota-ext4 in case the compressed format is available (to reduce time spent uploading)
 	if [ -f ${archive}/other/${IMAGE}-${MACHINE}.ota-ext4.gz ]; then
 		rm -f ${archive}/other/${IMAGE}-${MACHINE}.ota-ext4
